@@ -75,8 +75,10 @@ planets = [
 
 #creates class Planet
 class Planet
+  #instance vars accessed outside of the class need to be here in attributes
   attr_reader :name, :moons, :diameter, :position, :type, :distance, :solar_revolution
 
+  #the hashes that send the info to Planet are not ordered
   def initialize(planet_hash)
     @name = planet_hash[:name]
     @moons = planet_hash[:moons]
@@ -146,6 +148,7 @@ def solar_system(system) #parameter is an object of class SolarSystem
     #runs the SolarSystem class method calc_planet_age on the solar_revolution method of the selected planet to get the age of the planet.Coudl have just put this into the planet hash, but was good practice for working with classes within classes
     age = system.calc_planet_age(system.all_planets[planet].solar_revolution)
     puts "\n#{system.all_planets[planet].print_info}"
+    #print instead of puts b/c the the print_info method called above has a puts inside of it
     print "#{system.all_planets[planet].name} is #{age.round(2)} Earth years old."
 
     puts "Find out how far #{system.all_planets[planet].name} is from another planet!\nEnter the number of another planet (see list above) to find out"
